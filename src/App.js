@@ -8,11 +8,18 @@ const initialItems = [
 
 export default function App() {
   const [itemList, setItemList] = useState(initialItems);
+  function handleAddItem(newItem) {
+    setItemList([...itemList, newItem]);
+  }
+  function handleDeleteItem(itemToDelete) {
+    const newList = itemList.filter((item) => item.id !== itemToDelete.id);
+    setItemList([...newList]);
+  }
   return (
     <div className='app'>
       <Logo />
-      <Form itemList={itemList} setItemList={setItemList} />
-      <PackingList itemList={itemList} />
+      <Form onAddItem={handleAddItem} />
+      <PackingList onDeleteItem={handleDeleteItem} itemList={itemList} />
       <Stats />
     </div>
   );
@@ -22,7 +29,7 @@ function Logo() {
   return <h1>🏝️ Far Away 🧳</h1>;
 }
 
-function Form({ itemList, setItemList }) {
+function Form({ onAddItem }) {
   const [quantity, setQuantity] = useState(0);
   const [description, setDescription] = useState('');
 
@@ -30,9 +37,7 @@ function Form({ itemList, setItemList }) {
     e.preventDefault();
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
-
-    setItemList([...itemList, newItem]);
-    console.log(itemList);
+    onAddItem(newItem);
     setDescription('');
     setQuantity(1);
   }
@@ -62,24 +67,24 @@ function Form({ itemList, setItemList }) {
   );
 }
 
-function Item({ item }) {
+function Item({ onDeleteItem, item }) {
   return (
     <li id={item.id}>
       <span style={item.packed ? { textDecoration: 'line-through' } : {}}>
         {item.description}: {item.quantity}{' '}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItem(item)}>❌</button>
     </li>
   );
 }
 
-function PackingList({ itemList }) {
+function PackingList({ onDeleteItem, itemList }) {
   return (
     <div className='list'>
       <ul>
         <h2>List</h2>
         {itemList.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item onDeleteItem={onDeleteItem} item={item} key={item.id} />
         ))}
       </ul>
     </div>
