@@ -96,6 +96,7 @@ function Item({ onDeleteItem, onToggle, item }) {
 }
 
 function PackingList({ onDeleteItem, onToggle, itemList }) {
+  const [sortBy, setSortBy] = useState('packed');
   return (
     <div className='list'>
       <ul>
@@ -109,6 +110,13 @@ function PackingList({ onDeleteItem, onToggle, itemList }) {
           />
         ))}
       </ul>
+      <div className='actions'>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value='input'>Sort by Input Order</option>
+          <option value='description'>Sort by Description</option>
+          <option value='packed'>Sort by Packed Status</option>
+        </select>
+      </div>
     </div>
   );
 }
