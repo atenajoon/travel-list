@@ -97,11 +97,21 @@ function Item({ onDeleteItem, onToggle, item }) {
 
 function PackingList({ onDeleteItem, onToggle, itemList }) {
   const [sortBy, setSortBy] = useState('packed');
+  let sortedItems;
+
+  sortedItems = sortBy === 'input' && itemList;
+  sortedItems =
+    sortBy === 'description' &&
+    itemList.slice().sort((a, b) => a.description.localeCompare(b.description));
+  sortedItems =
+    sortBy === 'packed' &&
+    itemList.slice().sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
     <div className='list'>
       <ul>
         <h2>List</h2>
-        {itemList.map((item) => (
+        {sortedItems.map((item) => (
           <Item
             onDeleteItem={onDeleteItem}
             onToggle={onToggle}
