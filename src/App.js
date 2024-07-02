@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const initialItems = [
   { id: 1, description: 'Passports', quantity: 2, packed: false },
-  { id: 2, description: 'Socks', quantity: 12, packed: true },
+  { id: 2, description: 'Socks', quantity: 12, packed: false },
   { id: 3, description: 'Charger', quantity: 1, packed: false },
 ];
 
@@ -99,13 +99,17 @@ function PackingList({ onDeleteItem, onToggle, itemList }) {
   const [sortBy, setSortBy] = useState('packed');
   let sortedItems;
 
-  sortedItems = sortBy === 'input' && itemList;
-  sortedItems =
-    sortBy === 'description' &&
-    itemList.slice().sort((a, b) => a.description.localeCompare(b.description));
-  sortedItems =
-    sortBy === 'packed' &&
-    itemList.slice().sort((a, b) => Number(a.packed) - Number(b.packed));
+  if (sortBy === 'input') sortedItems = itemList;
+
+  if (sortBy === 'description')
+    sortedItems = itemList
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+
+  if (sortBy === 'packed')
+    sortedItems = itemList
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
 
   return (
     <div className='list'>
