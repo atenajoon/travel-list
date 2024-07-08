@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap');
 :root {
-  --primary-color: #4101cc;
-  --secondary-color: #a70e88;
+  --primary-color-1: #4101cc;
+  --secondary-color-1: #a70e88;
+  --bg-color-1: #fff0fc;
+
+  --primary-color-2: #ace6ff;
+  /* --secondary-color-2: #a70e88; */
+
   --text-color: #333;
   --background-color: #69f0f2;
   /* #51f0c6; */
-  --input-background-color: #fff4d6f0;
-  --complimantary-color: #75cf45;
+  --input-background-color: #f6f3ebf0;
+  --complimantary-color: rgb(124, 255, 203);
+  --complimentary-color-2: #88f151;
   --border-radius: 1rem;
 }
 * {
@@ -22,21 +28,27 @@ html {
 body {
   font-size: 2.4rem;
   font-family: sans-serif;
-  color: var(--background-color);
+  color: var(--text-color);
+  background-color: var(--bg-color-1);
   font-family: 'Quicksand';
   font-weight: 500;
 }
 
+.section {
+  padding: 2rem;
+}
 .app {
   width: 100%;
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
 }
-
+.logo-title {
+  color: var(--complimentary-color-2);
+}
 h1 {
   text-align: center;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-1);
   font-family: 'Monoton';
   font-size: 8rem;
   text-transform: uppercase;
@@ -47,12 +59,15 @@ h1 {
 }
 
 .add-form {
-  background-color: var(--secondary-color);
-  padding: 2.8rem;
+  background-color: var(--secondary-color-1);
+  /* padding: 2.8rem; */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+}
+.add-form button {
+  color: var(--bg-color-1);
 }
 
 h3 {
@@ -63,11 +78,11 @@ h3 {
 button,
 select,
 input {
-  background-color: var(--input-background-color);
+  border: 1px solid var(--complimentary-color-2);
   color: var(--text-color);
   font-family: inherit;
-  border: none;
   border-radius: var(--border-radius);
+  margin: 0.5rem;
   padding: 1.2rem 3.2rem;
   font-weight: 700;
   font-size: 1.8rem;
@@ -76,11 +91,17 @@ input {
 
 .add-form button {
   text-transform: uppercase;
-  background-color: var(--complimantary-color);
+  background-color: var(--secondary-color-1);
 }
 
+.form-title {
+  color: var(--bg-color-1);
+}
+.section-content {
+  padding: 0.2rem 3.2rem;
+}
 .list {
-  background-color: var(--background-color);
+  /* background-color: var(--bg-color-1); */
   color: var(--text-color);
   padding: 4rem 0;
 
@@ -89,6 +110,9 @@ input {
   flex-direction: column;
   gap: 3.2rem;
   align-items: center;
+}
+.list-title {
+  color: var(--secondary-color-1);
 }
 
 .actions button,
@@ -125,7 +149,7 @@ input {
 input[type='checkbox'] {
   height: 2rem;
   width: 2rem;
-  accent-color: var(--secondary-color);
+  accent-color: var(--secondary-color-1);
 }
 
 .list li button {
@@ -137,8 +161,16 @@ input[type='checkbox'] {
   transform: translateY(2px);
 }
 
+.calculator {
+  background-color: var(--primary-color-2);
+}
+.calculator-output {
+  display: flex;
+  justify-content: center;
+  padding: 1.2rem;
+}
 .stats {
-  background-color: var(--complimantary-color);
+  background-color: var(--complimentary-color-2);
   color: var(--text-color);
   text-align: center;
   font-weight: 700;

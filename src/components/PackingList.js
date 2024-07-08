@@ -21,25 +21,27 @@ export default function PackingList({
       .sort((a, b) => Number(a.packed) - Number(b.packed));
 
   return (
-    <div className='list'>
-      <ul>
-        <h2>List</h2>
-        {sortedItems.map((item) => (
-          <Item
-            onDeleteItem={onDeleteItem}
-            onToggle={onToggle}
-            item={item}
-            key={item.id}
-          />
-        ))}
-      </ul>
-      <div className='actions'>
-        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-          <option value='input'>Sort by Input Order</option>
-          <option value='description'>Sort by Description</option>
-          <option value='packed'>Sort by Packed Status</option>
-        </select>
-        <button onClick={onClearList}>Clear List</button>
+    <div className='section'>
+      <h2 className='list-title'>List</h2>
+      <div className='list'>
+        <ul>
+          {sortedItems.map((item) => (
+            <Item
+              onDeleteItem={onDeleteItem}
+              onToggle={onToggle}
+              item={item}
+              key={item.id}
+            />
+          ))}
+        </ul>
+        <div className='actions'>
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <option value='input'>Sort by Input Order</option>
+            <option value='description'>Sort by Description</option>
+            <option value='packed'>Sort by Packed Status</option>
+          </select>
+          <button onClick={onClearList}>Clear List</button>
+        </div>
       </div>
     </div>
   );

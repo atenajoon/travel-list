@@ -14,8 +14,11 @@ export default function Form({ onAddItem }) {
   }
 
   return (
-    <form className='add-form' onSubmit={handleSubmit}>
-      <h3> What do you need for your 😎 trip?</h3>
+    <form className='add-form section' onSubmit={handleSubmit}>
+      <h3 className='form-title section-title'>
+        {' '}
+        What do you need for your 😎 trip?
+      </h3>
       <select
         onChange={(e) => setQuantity(Number(e.target.value))}
         value={quantity}

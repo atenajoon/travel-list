@@ -3,6 +3,7 @@ import Logo from './Logo';
 import PackingList from './PackingList';
 import Stats from './Stats';
 import Form from './Form';
+import TipCalculator from './TipCalculator';
 
 const initialItems = [
   { id: 1, description: 'Passports', quantity: 2, packed: false },
@@ -43,6 +44,7 @@ export default function App() {
         itemList={itemList}
         onClearList={handleClearList}
       />
+      <TipCalculator />
       <Stats itemList={itemList} />
     </div>
   );
